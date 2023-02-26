@@ -1,44 +1,84 @@
 <template>
-  <nav class="navbar navbar-expand-lg background-color-black-portfolio">
-  <div class="container-fluid">
-      <div class="d-flex flex-row ms-4">
-          <!-- <img src="" alt="none"> -->
-          <font-awesome-icon class="text-white fs-1" icon="circle" />
-          <div class="d-flex flex-column ms-2">
-          <p class="text-white m-0 p-0">Carlos Gitto</p>
-          <p class="text-color-green-portfolio m-0 p-0">@CarlosGitto</p>
-          </div>
-      </div>
-    
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-      <ul class="d-flex  w-75  justify-content-end navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item me-5 ">
-          <a class="nav-link active fw-bolder text-decoration-none text-white" aria-current="page" href="#">Sobre mi</a>
+  <nav
+    id="top-header"
+    class="navbar shadow fixed-top navbar-expand-lg translucid-background"
+  >
+    <div class="d-flex justify-content-center collapse navbar-collapse">
+      <ul
+        class="d-flex justify-content-around w-100 align-items-center navbar-nav"
+      >
+        <li class="nav-item w-25"></li>
+        <li class="nav-item me-5">
+          <a
+            class="nav-link text-decoration-none fw-bold"
+            :class="{ 'text-secondary-color': isActive.mainSection }"
+            aria-current="page"
+            href="#main-section"
+            >About</a
+          >
         </li>
         <li class="nav-item me-5">
-          <a class="nav-link text-decoration-none text-white" href="#">Feed</a>
+          <a
+            class="nav-link text-decoration-none fw-bold"
+            :class="{ 'text-secondary-color': isActive.activitySection }"
+            href="#activity-section"
+            >Feed</a
+          >
         </li>
-        <li class="nav-item">
-          
+        <li class="nav-item me-5">
+          <a
+            class="nav-link text-decoration-none fw-bold"
+            :class="{ 'text-secondary-color ': isActive.contactSection }"
+            href="#contact-section"
+            >Contact me</a
+          >
         </li>
       </ul>
-      <div class="d-flex flex-row border-white w-25 justify-content-around align-items-center">
-        <button class="nav-link fw-bold text-decoration-none btn text-color-black-portfolio background-color-light-grey-portfolio border-radius-12-portfolio" href="#" tabindex="-1" aria-disabled="true">Contactame</button>
-
-        <font-awesome-icon class="text-white fs-5 " icon="magnifying-glass" />
-      </div>
-   
     </div>
-  </div>
-</nav>
+  </nav>
 </template>
 
 <script>
 export default {
-    name: 'FixedNavbar',
-}
+  name: "FixedNavbar",
+  data() {
+    return {
+      isActiveSearch: false,
+      isActive: {
+        mainSection: true,
+        activitySection: false,
+        contactSection: false,
+      },
+    };
+  },
+  computed: {
+    mustFade(){
+      return 0
+    }
+  }
+};
 </script>
 
-<style>
+<style scoped>
 
+
+#top-header {
+  height: 10vh !important;
+}
+.translucid-background {
+  border: 1px solid transparent;
+  backdrop-filter: blur(0.3rem);
+  border-bottom-color: rgba(225, 225, 225, 0.2) !important;
+  background-color: rgba(225, 225, 225, 0.04) !important;
+}
+li:after {
+  display: block;
+  content: "";
+  border-bottom: solid 2px var(--primary-color);
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+li:hover:after {
+  transform: scaleX(1);
+}
 </style>
